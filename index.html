@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="RoboTAP controls by tracking any desired point on a physical surface">
+  <meta name="keywords" content="RoboTAP">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RoboTAP: Tracking Arbitrary Points for Few-Shot Visual Imitation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="https://deepmind.com">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://arxiv.org/abs/2211.03726">
+              TAP-Vid Dataset
+            </a>
+            <a class="navbar-item" href="https://deepmind-tapir.github.io/">
+              TAPIR
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">RoboTAP: Tracking Arbitrary Points <br>for Few-Shot Visual Imitation</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=Jvi_XPAAAAAJ">Mel Vecerik</a><sup>1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="http://www.carldoersch.com">Carl Doersch</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://yangyi02.github.io">Yi Yang</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://tdavchev.github.io/">Todor Davchev</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.co.uk/citations?user=0ncQNL8AAAAJ">Yusuf Aytar</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://stanniszhou.github.io/">Guangyao Zhou</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://raiahadsell.com/index.html">Raia Hadsell</a><sup>1</sup>
+              </span>
+              <span class="author-block">
+                <a href="http://www0.cs.ucl.ac.uk/staff/l.agapito/">Lourdes Agapito</a><sup>2</sup>
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=bwORIKIAAAAJ">Jon Scholz</a><sup>1</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Google DeepMind,</span>
+              <span class="author-block"><sup>2</sup>Department of Engineering at University College London</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper - Coming soon</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv - Coming soon</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/deepmind/tapnet"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Clustering Code - Coming soon</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <div class="column is-three-quarters" style="display:block; margin: auto;">
+          <div class="publication-video" style="padding-bottom: 75%">
+            <center>
+            <video id="teaser" autoplay controls muted loop playsinline height="100%">
+              <source src="https://storage.googleapis.com/dm-tapnet/robotap/videos/robotap%20banner%20video%20trimmed.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <p class="has-text-centered">
+          <span class="dnerf">RoboTAP</span> solves stencil insertion (and many other tasks) from 6
+          demonstrations <br/> or less, without CAD models or prior experience with the objects.  It does <br/>
+          this by using DeepMind's novel point tracking algorithm <a href="https://deepmind-tapir.github.io/">TAPIR</a>.  At every <br/> moment,
+          it detects points on objects which matter most to the action (<font color="red">red</font>), <br/> infers where those points
+          should move to (<font color="cyan">cyan</font>), and computes an <br/> action that moves them there (<font color="orange">orange arrow</font>).
+          <!--<span class="dnerf">RoboTAP</span> levarages the ability to track of any point on the surface
+          <br/> to follow a demonstration. It does so by detecting points relevant to  
+          <br/> each stage, shown in <font color="red">red</font>, and controlling the robot to match
+          <br/> them with the goal locations extracted from the demos, shown in <font color="cyan">cyan</font>.
+          <br/> Using this it can solve the task of inserting wooden shapes into their
+          <br/> sockets from just 6 demonstrations.-->
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              For robots to be useful outside labs and specialised factories we need to be able to teach them new useful behaviors
+              quickly. Current approaches lack either the generality to onboard new tasks without task-specific
+              engineering, or else lack the data-efficiency to do so in an amount of time that enables practical use. In
+              this work we explore dense tracking as a representational vehicle to allow faster and more general
+              learning from demonstration. Our approach utilizes Track-Any-Point (TAP) models to isolate the relevant
+              motion in a demonstration, and parameterize a low-level controller to reproduce this motion across changes
+              in the scene. We show this results in robust robot policies that can solve complex object-arrangement
+              tasks such as shape-matching, stacking, and even full path-following tasks such as applying glue and
+              sticking objects together, all from demonstrations that can be collected in minutes.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </div>
+  </section>
+  <section class="section">
+    <div class="container is-max-desktop">
+ 
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video Summary</h2>
+          <div class="publication-video">
+            <video id="summary" playsinline controls muted height="100%">
+              <source src="https://storage.googleapis.com/dm-tapnet/robotap/videos/summary_video_v6.mp4"
+                type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container is-max-desktop"> 
+      <div class="is-centered has-text-centered">
+        <div class="is-four-fifths">
+          <h2 class="title is-3">Example Task Illustrations</h2>
+          <div class="has-text-justified">
+            <p>
+              Here we show the example tasks that we tackled with RoboTAP. For each task, the system only saw 4-6 demonstrations of the behavior; outside of these demonstrations, the relevant objects have never been seen before.  Click the icons on the bottom to see different examples of the robot at work.
+            </p>
+          <div/>
+          <div style="margin:auto">
+            <table style="width:1024;padding-bottom:0px" cellpadding="0" cellspacing="0">
+              <tr height="50%">
+                <td style="padding-left:4px;padding-right:4px;" width="50%">
+                  <div style="display:inline;">
+                    <video id="success_vid0" width="512" height="288" autoplay loop muted>
+                      <source src="" type="video/mp4" />
+                    </video>
+                  </div>
+                </td>
+                <td style="padding-left:4px;padding-right:4px;" width="50%">
+                  <div style="display:inline;">
+                    <video id="success_vid1" width="512" height="288" autoplay loop muted>
+                      <source src="" type="video/mp4" />
+                    </video>
+                  </div>
+                </td>
+              </tr>
+              <tr height="50%">
+                <td style="padding-left:4px;padding-right:4px;" width="50%">
+                  <div style="display:inline;">
+                    <video id="success_vid2" width="512" height="288" autoplay loop muted>
+                      <source src="" type="video/mp4" />
+                    </video>
+                  </div>
+                </td>
+                <td style="padding-left:20px;padding-right:20px;text-align: center; vertical-align: middle;" width="50%">
+                  <p width="512" height="288" id="text">Javascript required.</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <h3 style="border-top: 1px solid darkgray;">Select a task for more information.</h3>
+          <div class="has-text-centered">
+              <img id="input" style="margin-top:10px;cursor:pointer;" src="https://storage.googleapis.com/dm-tapnet/robotap/videos/success_gallery/gluing_11_thumb.png"
+                  width="100" onclick="set_source(0);"/>
+              <img id="input" style="margin-top:10px;cursor:pointer;" src="https://storage.googleapis.com/dm-tapnet/robotap/videos/success_gallery/apple_on_jello_1_thumb.png"
+                  width="100" onclick="set_source(1);"/>
+              <img id="input" style="margin-top:10px;cursor:pointer;" src="https://storage.googleapis.com/dm-tapnet/robotap/videos/success_gallery/juggling_stack_20_thumb.png"
+                  width="100" onclick="set_source(2);"/>
+              <img id="input" style="margin-top:10px;cursor:pointer;" src="https://storage.googleapis.com/dm-tapnet/robotap/videos/success_gallery/four_block_stencil_w2_39_thumb.png"
+                  width="100" onclick="set_source(3);"/>
+              <img id="input" style="margin-top:10px;cursor:pointer;" src="https://storage.googleapis.com/dm-tapnet/robotap/videos/success_gallery/lego_stack_w3_2_thumb.png"
+                  width="100" onclick="set_source(4);"/>
+              <img id="input" style="margin-top:10px;cursor:pointer;" src="https://storage.googleapis.com/dm-tapnet/robotap/videos/success_gallery/tapir_robot_v2_4_thumb.png"
+                  width="100" onclick="set_source(5);"/>
+              <img id="input" style="margin-top:10px;cursor:pointer;" src="https://storage.googleapis.com/dm-tapnet/robotap/videos/success_gallery/four_block_stack_1_thumb.png"
+                  width="100" onclick="set_source(6);"/>
+              <img id="input" style="margin-top:10px;cursor:pointer;" src="https://storage.googleapis.com/dm-tapnet/robotap/videos/success_gallery/pass_butter_1_thumb.png"
+                  width="100" onclick="set_source(7);"/>
+              <img id="input" style="margin-top:10px;cursor:pointer;" src="https://storage.googleapis.com/dm-tapnet/robotap/videos/success_gallery/precision_1_thumb.png"
+                  width="100" onclick="set_source(8);"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="is-centered has-text-centered">
+        <div class="is-four-fifths">
+          <h2 class="title is-3">The RoboTAP Approach</h2>
+            <div class="content has-text-justified">
+            <p>
+              What makes RoboTAP different from other robotics algorithms is that it uses <a href="https://github.com/deepmind/tapnet">TAP</a>, and specifically the state-of-the-art <a href="https://deepmind-tapir.github.io/">TAPIR</a> model, as the core of its spatial understanding.  We show that this model can provide sufficient pose estimation, and even segmentation, for novel objects.
+            </p>
+            <p>
+              RoboTAP begins with a set of demonstrations. For the stencil task, a demonstration looks like this.  Note that the user is positioning the robot by pushing it (so-called &ldquo;kinesthetic teaching&rdquo;).  This contrasts with many imitation learning algorithms like behavioral cloning, which require access to the control signals that produce the action.
+            </p>
+            <div class="publication-video has-text-centered" style="padding-bottom: 50%">
+              <video id="four_block_stencil_demonstration" autoplay controls muted loop playsinline height="100%">
+                <source src="https://storage.googleapis.com/dm-tapnet/robotap/videos/four_block_stencil_w2_demonstration.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p>
+              Given these demonstrations, RoboTAP automatically breaks the action down into stages, and extract a set of <i>active points</i> that determine the motion for each stage. For the stencil task, we have a total of 8 stages: four stages where points on the successive blocks are &ldquo;active&rdquo; (i.e., the robot reaches toward the object), and another four stages where the points on the stencil are &ldquo;active&rdquo; (i.e., stages where the robot must place each object at a specific location relative to the stencil).
+            </p>
+            <p>
+              The stages come from gripper actions (we assume that closing or opening the gripper marks the start of a new stage).
+              Then we track a few thousand randomly-selected points using TAPIR, across all demos, and then select the points which are relevant for each stage.
+              Specifically, within each stage, RoboTAP selects TAPIR points which all arrive at the same location at the end of the segment, suggesting that the user's goal is to place the object at a specific location.
+              Here's the &ldquo;active points&rdquo; for the stencil task.  Each point is tracked automatically by TAPIR.
+            </p>
+            <div class="publication-video has-text-centered" style="padding-bottom: 50%">
+              <video id="robot_active_points" autoplay controls muted loop playsinline height="100%">
+                <source src="https://storage.googleapis.com/dm-tapnet/robotap/videos/robot_active_points.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p>
+              In order to produce clean active point sets that track the relevant object even under noise and occlusion, we find it's helpful to perform motion-based unsupervised object discovery. That is, we break the scene down into a set of &ldquo;objects&rdquo; that can move independently and explain the point motion as well as possible. This problem has classically proved challenging in the computer vision literature, but with strong point tracking from TAPIR (and, in particular, its very low rate of false positives), it becomes feasible. Here's a set of objects automatically discovered from the stencil demonstrations:
+            </p>
+            <div class="column is-two-thirds" style="display:block; margin: auto;">
+              <div class="publication-video has-text-centered" style="padding-bottom: 70%">
+                <video id="clustering" autoplay controls muted loop playsinline height="100%">
+                  <source src="https://storage.googleapis.com/dm-tapnet/robotap/videos/clustering_v2.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+            <p>
+              Given a set of active points for each stage of the demo, we next construct a &ldquo;motion plan&rdquo; which defines the full behavior.  Note that the motion plan simply consists of a set of &rdquo;active points,&ldquo; the paths they followed during the demonstrations, as well as gripper actions at the end of each stage.  Therefore, the inferred behavior can be easily understood and potentially even edited if desired, although we made no edits for the behaviors shown in this paper.
+            </p>
+            <img src="./static/images/overview_figure_v2.svg" class="interpolation-image" alt="TAPIR architecture." />
+            <p>
+              Given the motion plan, RoboTAP can run on the robot by imitating each stage using standard visual servoing. That is, we compute an approximate Jacobian of the motion of the points with respect to gripper motions, and execute actions which bring the points toward the trajectories seen in the demos.  Here's an example of the full behavior executed on the robot (5x speed):
+            </p>
+            <div class="publication-video has-text-centered" style="padding-bottom: 30%">
+              <video id="teaser" autoplay controls muted loop playsinline height="100%">
+                <source src="https://storage.googleapis.com/dm-tapnet/robotap/videos/all_vis.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p>
+              The left video shows the third-person view. The middle video shows motion at inference time overlayed over the closest demo for each stage. 
+              The &ldquo;active points&rdquo; relevant to each stage are shown in <font color="red">red</font>, and goal locations 
+              extracted from the demos are shown <font color="cyan">cyan</font>. The third video illustrates the desired motion: the visual servoing produces a 4D (x, y, z, rz) robot action which moves each point in the direction indicated by the <font color="blue">blue lines</font>, therefore moving toward the trajectory seen in the demos.
+            </p>
+            <p>
+              RoboTAP can already solve a wide variety of tasks, including many that are analogous to the precise and repetitive tasks common in industrial settings.  However, there are also limitations.  For one, the system is purely visual and does not incorporate force feedback.  Furthermore, it is not designed to dynamically compose skills if the task needs to be done in a different order than what was seen in the demonstrations.
+            </p>
+            <p>
+              During our experiments we have also observed a few specific factors which caused failures.
+              First of all our approach implicitly assumes that the important object can be identified.
+              This assumption is not true if there are very similar objects on the scene or the important object becomes occluded.
+              A less obvious reason why this can happen is when the gripper moves too far from the object and not enough points can be correctly matched.
+              Finally our approach can fail due to collisions as it does not have a mechanism to avoid unexpected objects.
+              We show examples of these in the following videos.              
+            </p>
+            <div style="padding-left: 10%;padding-right: 10%">
+              <div id="failure-carousel" class="carousel results-carousel has-text-centered">
+                <div class="item">
+                  <video poster="" id="4_object_stack_fail" autoplay controls muted loop playsinline height="100%" width="100%">
+                    <source src="https://storage.googleapis.com/dm-tapnet/robotap/videos/4_object_stack_12_fail.mp4"
+                    type="video/mp4">
+                  </video>
+                </div>
+                <div class="item">
+                  <video poster="" id="4_object_stack_fail" autoplay controls muted loop playsinline height="100%" width="100%">
+                    <source src="https://storage.googleapis.com/dm-tapnet/robotap/videos/4_object_stack_19_fail.mp4"
+                    type="video/mp4">
+                  /video>
+                </div>
+                <div class="item">
+                  <video poster="" id="apple_jello_sticky_fail" autoplay controls muted loop playsinline height="100%" width="100%">
+                    <source src="https://storage.googleapis.com/dm-tapnet/robotap/videos/apple_jello_sticky_20_fail.mp4"
+                    type="video/mp4">
+                  </video>
+                </div>
+                <div class="item">
+                  <video poster="" id="gluing_fail" autoplay controls muted loop playsinline height="100%" width="100%">
+                    <source src="https://storage.googleapis.com/dm-tapnet/robotap/videos/gluing_19_partial.mp4"
+                    type="video/mp4">
+                  </video>
+                </div>
+                <div class="item">
+                  <video poster="" id="lego_stack_fail" autoplay controls muted loop playsinline height="100%" width="100%">
+                    <source src="https://storage.googleapis.com/dm-tapnet/robotap/videos/lego_stack_w3_8.mp4"
+                    type="video/mp4">
+                  </video>
+                </div>
+                <div class="item">
+                  <video poster="" id="stencil_fail" autoplay controls muted loop playsinline height="100%" width="100%">
+                    <source src="https://storage.googleapis.com/dm-tapnet/robotap/videos/four_block_stencil_w2_10.mp4"
+                    type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <p id="failure-text">Javascript Required</p>
+            </div>
+
+          <br/>
+          <p>
+            To summarize, we have presented RoboTAP: a manipulation system that can solve novel visuomotor tasks from just a few minutes of robot interaction.
+            We believe that capabilities presented within RoboTAP could be useful for large-scale autonomous data-gathering, and perhaps as a solution real-world tasks in its own right.
+            RoboTAP is most useful in scenarios where quick teaching of visuomotor skills is required, and where it is easy to demonstrate the desired behavior a few times.
+            This can be very practical as RoboTAP does not require any task-specific training or neural-network fine-tuning. 
+          </p>
+          <p>
+            Several of the ideas in RoboTAP, such as explicit spatial representation and short-horizon visuo-motor control, could also be applicable in more general settings.
+            In the future we would like to explore whether RoboTAP models and insights can be combined with larger-scale end-to-end models to increase their efficiency and interpretability.
+            Please see our paper for more details of our algorithms.
+          </p>
+          </div>
+        </div>
+      </div>
+      <br/>
+
+      <div class="is-centered has-text-centered">
+        <div class="is-full-width">
+          <div class="content">
+            <h2 class="title is-3">RoboTAP Dataset</h2>
+            <div class="container">
+              <div id="results-carousel" class="carousel results-carousel">
+                <div class="item">
+                  <video poster="" id="4_object_stack" autoplay controls muted loop playsinline height="200%">
+                    <source
+                      src="https://storage.googleapis.com/dm-tapnet/robotap/videos/dataset/10790317943435558913.mp4"
+                      type="video/mp4">
+                  </video>
+                </div>
+                <div class="item">
+                  <video poster="" id="apple_on_jello" autoplay controls muted loop playsinline height="200%">
+                    <source
+                      src="https://storage.googleapis.com/dm-tapnet/robotap/videos/dataset/gear_v2_9-basket_front_left_rgb_img-2.mp4"
+                      type="video/mp4">
+                  </video>
+                </div>
+                <div class="item">
+                  <video poster="" id="four_block_stencil" autoplay controls muted loop playsinline height="200%">
+                    <source
+                      src="https://storage.googleapis.com/dm-tapnet/robotap/videos/dataset/nist_board1-robot0_camera0_rgb_img.mp4"
+                      type="video/mp4">
+                  </video>
+                </div>
+                <div class="item">
+                  <video poster="" id="gluing" autoplay controls muted loop playsinline height="200%">
+                    <source
+                      src="https://storage.googleapis.com/dm-tapnet/robotap/videos/dataset/nist_cables1-robot0_camera0_rgb_img.mp4"
+                      type="video/mp4">
+                  </video>
+                </div>
+                <div class="item">
+                  <video poster="" id="juggling_stack" autoplay controls muted loop playsinline height="200%">
+                    <source
+                      src="https://storage.googleapis.com/dm-tapnet/robotap/videos/dataset/nist_nuts_bolts1-robot0_camera0_rgb_img.mp4"
+                      type="video/mp4">
+                  </video>
+                </div>
+                <div class="item">
+                  <video poster="" id="lego_stack" autoplay controls muted loop playsinline height="200%">
+                    <source
+                      src="https://storage.googleapis.com/dm-tapnet/robotap/videos/dataset/plush1-robot0_camera0_rgb_img.mp4"
+                      type="video/mp4">
+                  </video>
+                </div>
+                <div class="item">
+                  <video poster="" id="pass_butter" autoplay controls muted loop playsinline height="200%">
+                    <source
+                      src="https://storage.googleapis.com/dm-tapnet/robotap/videos/dataset/sketchy1-pixels_basket_front_left.mp4"
+                      type="video/mp4">
+                  </video>
+                </div>
+                <div class="item">
+                  <video poster="" id="tapir_robot" autoplay controls muted loop playsinline height="200%">
+                    <source
+                      src="https://storage.googleapis.com/dm-tapnet/robotap/videos/dataset/sketchy4-pixels_basket_front_left.mp4"
+                      type="video/mp4">
+                  </video>
+                </div>
+                <div class="item">
+                  <video poster="" id="tapir_robot" autoplay controls muted loop playsinline height="200%">
+                    <source
+                      src="https://storage.googleapis.com/dm-tapnet/robotap/videos/dataset/sketchy4-pixels_usbcam1.mp4"
+                      type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+            <div class="content has-text-justified">
+              <p>
+                To enable better research we also introduce an addition to the previous TAP-Vid benchmark in a form of a 
+                new dataset which focuses specifically on robotic manipulation.
+                The ability to track and relate points in the scene is what enabled RoboTAP to generalize to novel
+                scenes and poses.
+                These capabilities are directly powered by the performance of these models and
+                therefore a core part of our contribution is enabling advances in these areas.
+                For more details about this dataset please see our paper or download it from the <a href="https://github.com/deepmind/tapnet#tap-vid-benchmark">TAP-Vid website</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+
+      <!-- Concurrent Work. -->
+      <div class="is-centered">
+        <div class="is-full-width">
+          <h2 class="title is-3">Related Links</h2>
+
+          <div class="content has-text-justified">
+            <p>
+              <a href="https://deepmind-tapir.github.io/">TAPIR: Tracking Any Point with per-frame Initialization and temporal Refinement</a> is the foundational visual 
+              perception model for this work. It provides fast and accurate tracking of any point in a video.
+            </p>            
+            <p>
+              <a href="https://danieltakeshi.github.io/2019/11/09/paper-set-descriptors/">Dense Object Nets and Descriptors for Robotic Manipulation</a> was an
+              inspiration for this work, but it requires to learn an embedding for each object class.
+            </p>
+            <p>
+              <a href="https://sites.google.com/view/2020-s3k">S3K: Self-Supervised Semantic Keypoints for Robotic Manipulation via Multi-View Consistency</a> demonstrates how
+              multi-view information can be used to learn a useful keypoint tracker from a small number of human annotations. This is demonstrated in several robot settings, but each
+              keypoint does require a human annotations.
+            </p>
+            <p>
+              <a href="https://sites.google.com/view/2021-tack">TACK: Few-Shot Keypoint Detection as Task Adaptation via Latent Embeddings</a> formulates 3D keypoint
+              tracking as a combination of task adaptation and conditional autoencoder problems. While this model is precise and can handle occlusions it must be trained on a specific
+              object class.
+            </p>
+          </div>
+        </div>
+      </div>
+      <br/>
+  </section>
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{vecerik2023robotap,
+    author    = {Mel Vecerik and Carl Doersch and Yi Yang and Todor Davchev and Yusuf Aytar and Guangyao Zhou and Raia Hadsell and Lourdes Agapito and Jon Scholz},
+    title     = {RoboTAP: Tracking Arbitrary Points for Few-Shot Visual Imitation},
+    journal   = {arXiv},
+    year      = {2023},
+  }</code></pre>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This means you are free to borrow the <a
+                href="https://github.com/robotap/robotap.github.io">source code</a> of this website, which
+              itelf is a fork of <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+              We just ask that you link back to this page in the footer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
