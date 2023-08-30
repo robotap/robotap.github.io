@@ -65,8 +65,8 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
+        <div class="is-centered">
+          <div class="has-text-centered">
             <h1 class="title is-1 publication-title">RoboTAP: Tracking Arbitrary Points <br>for Few-Shot Visual Imitation</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
@@ -103,7 +103,7 @@
               <span class="author-block"><sup>2</sup>Department of Engineering at University College London</span>
             </div>
 
-            <div class="column has-text-centered">
+            <div class="has-text-centered">
               <div class="publication-links">
                 <!-- PDF Link. -->
                 <span class="link-block">
@@ -143,7 +143,7 @@
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
-        <div class="column is-three-quarters" style="display:block; margin: auto;">
+        <div class="is-three-quarters" style="display:block; margin: auto;">
           <div class="publication-video" style="padding-bottom: 75%">
             <center>
             <video id="teaser" autoplay controls muted loop playsinline height="100%">
@@ -172,8 +172,8 @@
   <section class="section">
     <div class="container is-max-desktop">
       <!-- Abstract. -->
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
+      <div class="is-centered has-text-centered">
+        <div class="is-four-fifths">
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
@@ -196,8 +196,8 @@
   <section class="section">
     <div class="container is-max-desktop">
  
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
+      <div class="is-centered has-text-centered">
+        <div class="is-four-fifths">
           <h2 class="title is-3">Video Summary</h2>
           <div class="publication-video">
             <video id="summary" playsinline controls muted height="100%">
@@ -219,37 +219,29 @@
               Here we show the example tasks that we tackled with RoboTAP. For each task, the system only saw 4-6 demonstrations of the behavior; outside of these demonstrations, the relevant objects have never been seen before.  Click the icons on the bottom to see different examples of the robot at work.
             </p>
           <div/>
-          <div style="margin:auto">
-            <table style="width:1024;padding-bottom:0px" cellpadding="0" cellspacing="0">
-              <tr height="50%">
-                <td style="padding-left:4px;padding-right:4px;" width="50%">
-                  <div style="display:inline;">
-                    <video id="success_vid0" width="512" height="288" autoplay loop muted>
-                      <source src="" type="video/mp4" />
-                    </video>
-                  </div>
-                </td>
-                <td style="padding-left:4px;padding-right:4px;" width="50%">
-                  <div style="display:inline;">
-                    <video id="success_vid1" width="512" height="288" autoplay loop muted>
-                      <source src="" type="video/mp4" />
-                    </video>
-                  </div>
-                </td>
-              </tr>
-              <tr height="50%">
-                <td style="padding-left:4px;padding-right:4px;" width="50%">
-                  <div style="display:inline;">
-                    <video id="success_vid2" width="512" height="288" autoplay loop muted>
-                      <source src="" type="video/mp4" />
-                    </video>
-                  </div>
-                </td>
-                <td style="padding-left:20px;padding-right:20px;text-align: center; vertical-align: middle;" width="50%">
-                  <p width="512" height="288" id="text">Javascript required.</p>
-                </td>
-              </tr>
-            </table>
+          <div class="row" id="gallery_table" style="padding-top: 20px">
+            <div class="column" style="text-align: center;">
+              <div style="padding-left:10px;padding-right:10px;max-width:512px;margin:auto" >
+                <video id="success_vid0" width="960" height="540" autoplay loop playsinline muted>
+                  <source src="" type="video/mp4"/>
+                </video>
+              </div>
+              <div style="padding-left:10px;padding-right:10px;max-width:512px;margin:auto" >
+                <video id="success_vid2" width="960" height="540" autoplay loop playsinline muted">
+                  <source src="" type="video/mp4"/>
+                </video>
+              </div>
+            </div>
+            <div class="column" style="text-align: center;">
+              <div style="padding-left:10px;padding-right:10px;max-width:512px;margin:auto" >
+                <video id="success_vid1" width="960" height="540" autoplay loop playsinline muted>
+                  <source src="" type="video/mp4"/>
+                </video>
+              </div>
+              <div style="padding-left:15px;padding-right:15px;text-align: center; vertical-align: middle;">
+                <p width="960" height="540" id="text">Javascript required.</p>
+              </div>
+            </div>
           </div>
           <h3 style="border-top: 1px solid darkgray;">Select a task for more information.</h3>
           <div class="has-text-centered">
@@ -311,8 +303,8 @@
             <p>
               In order to produce clean active point sets that track the relevant object even under noise and occlusion, we find it's helpful to perform motion-based unsupervised object discovery. That is, we break the scene down into a set of &ldquo;objects&rdquo; that can move independently and explain the point motion as well as possible. This problem has classically proved challenging in the computer vision literature, but with strong point tracking from TAPIR (and, in particular, its very low rate of false positives), it becomes feasible. Here's a set of objects automatically discovered from the stencil demonstrations:
             </p>
-            <div class="column is-two-thirds" style="display:block; margin: auto;">
-              <div class="publication-video has-text-centered" style="padding-bottom: 70%">
+            <div class="is-two-thirds" style="display:block; margin: auto;">
+              <div class="publication-video has-text-centered" style="padding-bottom: 50%">
                 <video id="clustering" autoplay controls muted loop playsinline height="100%">
                   <source src="https://storage.googleapis.com/dm-tapnet/robotap/videos/clustering_v2.mp4" type="video/mp4">
                 </video>
@@ -534,8 +526,8 @@
   </section>
   <footer class="footer">
     <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
+      <div class="is-centered">
+        <div class="is-8">
           <div class="content">
             <p>
               This website is licensed under a <a rel="license"

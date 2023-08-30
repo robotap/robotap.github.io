@@ -163,5 +163,12 @@ function set_source(idx){
     vid.getElementsByTagName('source')[0].src=("https://storage.googleapis.com/dm-tapnet/robotap/videos/success_gallery/"+data[idx][i+1]);
     vid.load();
   }
+  /* Scroll to the top of visible videos. Important on phone. */
+  const visibility_margin = 30
+  var gallery_table_element = document.getElementById('gallery_table')
+  if (gallery_table_element.getBoundingClientRect().top < visibility_margin) {
+    const y = gallery_table_element.getBoundingClientRect().top + window.pageYOffset - visibility_margin;
+    window.scrollTo({top: y, behavior: 'smooth'});
+  }
 }
 
